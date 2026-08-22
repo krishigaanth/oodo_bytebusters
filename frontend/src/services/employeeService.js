@@ -3,10 +3,10 @@
  * Isolated data layer mimicking Odoo 'hr.employee' model
  */
 import { INITIAL_EMPLOYEES } from './mockData';
+import { api } from './api';
 
 const STORAGE_KEY = 'dayflow_employees_data';
 
-// Helper for simulated persistence
 function getStoredEmployees() {
   const data = localStorage.getItem(STORAGE_KEY);
   if (data) {
@@ -29,6 +29,10 @@ export const employeeService = {
    * Get all employees list
    */
   async getEmployees() {
+    const remoteData = await api.get('/api/admin/employees');
+    if (remoteData && Array.isArray(remoteData) && remoteData.length > 0) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([...getStoredEmployees()]);
@@ -40,6 +44,10 @@ export const employeeService = {
    * Get single employee by ID
    */
   async getEmployeeById(id) {
+    const remoteData = await api.get(`/api/admin/employees/${id}`);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const list = getStoredEmployees();
@@ -57,6 +65,10 @@ export const employeeService = {
    * Update employee details
    */
   async updateEmployee(id, updatedData) {
+    const remoteData = await api.put(`/api/admin/employees/${id}`, updatedData);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const list = getStoredEmployees();
@@ -76,6 +88,10 @@ export const employeeService = {
    * Add a new employee
    */
   async addEmployee(newEmployee) {
+    const remoteData = await api.post('/api/admin/employees', newEmployee);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         const list = getStoredEmployees();

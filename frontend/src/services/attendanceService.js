@@ -3,6 +3,7 @@
  * Isolated data layer mimicking Odoo 'hr.attendance' model
  */
 import { INITIAL_ATTENDANCE_RECORDS } from './mockData';
+import { api } from './api';
 
 const STORAGE_KEY = 'dayflow_attendance_data';
 
@@ -28,6 +29,10 @@ export const attendanceService = {
    * Get all attendance records
    */
   async getAllAttendance() {
+    const remoteData = await api.get('/api/admin/attendance');
+    if (remoteData && Array.isArray(remoteData) && remoteData.length > 0) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([...getStoredAttendance()]);
@@ -39,6 +44,10 @@ export const attendanceService = {
    * Get attendance for a specific employee
    */
   async getAttendanceByEmployee(employeeId) {
+    const remoteData = await api.get(`/api/admin/attendance?employee_id=${employeeId}`);
+    if (remoteData && Array.isArray(remoteData)) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         const all = getStoredAttendance();
@@ -52,6 +61,11 @@ export const attendanceService = {
    * Record a check-in / check-out
    */
   async recordPunch(employeeId, type = 'checkin') {
+    const endpoint = type === 'checkin' ? '/api/admin/attendance/check-in' : '/api/admin/attendance/check-out';
+    const remoteData = await api.post(endpoint, { employeeId });
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         const list = getStoredAttendance();

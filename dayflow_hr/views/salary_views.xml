@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Salary Component Tree View -->
+        <record id="view_dayflow_salary_component_tree" model="ir.ui.view">
+            <field name="name">dayflow.salary.component.tree</field>
+            <field name="model">dayflow.salary.component</field>
+            <field name="arch" type="xml">
+                <tree string="Salary Components">
+                    <field name="component_code"/>
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="type"/>
+                    <field name="value"/>
+                    <field name="enabled"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Salary Component Form View -->
+        <record id="view_dayflow_salary_component_form" model="ir.ui.view">
+            <field name="name">dayflow.salary.component.form</field>
+            <field name="model">dayflow.salary.component</field>
+            <field name="arch" type="xml">
+                <form string="Salary Component">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="component_code"/>
+                                <field name="category"/>
+                            </group>
+                            <group>
+                                <field name="type"/>
+                                <field name="value"/>
+                                <field name="enabled"/>
+                            </group>
+                        </group>
+                        <group string="Description">
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_dayflow_salary_component" model="ir.actions.act_window">
+            <field name="name">Salary Components</field>
+            <field name="res_model">dayflow.salary.component</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

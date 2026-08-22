@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dayflow_salary_component_admin,dayflow.salary.component.admin,model_dayflow_salary_component,group_dayflow_admin,1,1,1,1
+access_dayflow_salary_component_user,dayflow.salary.component.user,model_dayflow_salary_component,group_dayflow_employee,1,0,0,0
+access_dayflow_employee_salary_admin,dayflow.employee.salary.admin,model_dayflow_employee_salary,group_dayflow_admin,1,1,1,1
+access_dayflow_employee_salary_user,dayflow.employee.salary.user,model_dayflow_employee_salary,group_dayflow_employee,1,0,0,0

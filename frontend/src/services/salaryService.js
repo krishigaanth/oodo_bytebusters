@@ -4,6 +4,7 @@
  */
 import { INITIAL_SALARY_COMPONENTS, INITIAL_EMPLOYEES } from './mockData';
 import { calculateFullSalaryBreakdown } from './salaryCalculations';
+import { api } from './api';
 
 const COMPONENTS_STORAGE_KEY = 'dayflow_salary_components';
 const EMPLOYEES_STORAGE_KEY = 'dayflow_employees_data';
@@ -30,6 +31,10 @@ export const salaryService = {
    * Get all global salary components
    */
   async getComponents() {
+    const remoteData = await api.get('/api/admin/salary-components');
+    if (remoteData && Array.isArray(remoteData) && remoteData.length > 0) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([...getStoredComponents()]);
@@ -41,6 +46,10 @@ export const salaryService = {
    * Save or update a salary component
    */
   async saveComponent(componentData) {
+    const remoteData = await api.post('/api/admin/salary-components', componentData);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         const list = getStoredComponents();
@@ -82,6 +91,10 @@ export const salaryService = {
    * Get employee salary breakdown
    */
   async getEmployeeSalary(employeeId) {
+    const remoteData = await api.get(`/api/admin/employees/${employeeId}/salary`);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const rawEmps = localStorage.getItem(EMPLOYEES_STORAGE_KEY);
@@ -115,6 +128,10 @@ export const salaryService = {
    * Update employee salary parameters (wage, components, etc.)
    */
   async updateEmployeeSalary(employeeId, { monthlyWage, components }) {
+    const remoteData = await api.put(`/api/admin/employees/${employeeId}/salary`, { monthlyWage, components });
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const rawEmps = localStorage.getItem(EMPLOYEES_STORAGE_KEY);

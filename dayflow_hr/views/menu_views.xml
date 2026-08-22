@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu -->
+        <menuitem id="menu_dayflow_hr_root" name="Dayflow HRMS" web_icon="hr,static/description/icon.png" sequence="10"/>
+
+        <!-- Submenus -->
+        <menuitem id="menu_dayflow_employees" name="Employees" parent="menu_dayflow_hr_root" action="hr.open_view_employee_list_my" sequence="10"/>
+        <menuitem id="menu_dayflow_attendance" name="Attendance" parent="menu_dayflow_hr_root" action="hr_attendance.hr_attendance_action" sequence="20"/>
+        <menuitem id="menu_dayflow_leaves" name="Time Off" parent="menu_dayflow_hr_root" action="hr_holidays.hr_leave_action_action_approve" sequence="30"/>
+        <menuitem id="menu_dayflow_salary_components" name="Salary Components" parent="menu_dayflow_hr_root" action="action_dayflow_salary_component" sequence="40"/>
+    </data>
+</odoo>

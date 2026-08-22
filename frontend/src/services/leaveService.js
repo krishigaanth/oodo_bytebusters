@@ -3,6 +3,7 @@
  * Isolated data layer mimicking Odoo 'hr.leave' model
  */
 import { INITIAL_LEAVE_REQUESTS } from './mockData';
+import { api } from './api';
 
 const STORAGE_KEY = 'dayflow_leaves_data';
 
@@ -28,6 +29,10 @@ export const leaveService = {
    * Get all time off / leave requests
    */
   async getAllRequests() {
+    const remoteData = await api.get('/api/admin/leaves');
+    if (remoteData && Array.isArray(remoteData) && remoteData.length > 0) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([...getStoredLeaves()]);
@@ -39,6 +44,10 @@ export const leaveService = {
    * Get leave requests for specific employee
    */
   async getRequestsByEmployee(employeeId) {
+    const remoteData = await api.get(`/api/admin/leaves?employee_id=${employeeId}`);
+    if (remoteData && Array.isArray(remoteData)) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         const all = getStoredLeaves();
@@ -52,6 +61,10 @@ export const leaveService = {
    * Approve a leave request by HR Admin
    */
   async approveRequest(id) {
+    const remoteData = await api.post(`/api/admin/leaves/${id}/approve`);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const list = getStoredLeaves();
@@ -73,6 +86,10 @@ export const leaveService = {
    * Reject a leave request with a specified reason
    */
   async rejectRequest(id, reason = 'Not approved by HR') {
+    const remoteData = await api.post(`/api/admin/leaves/${id}/reject`, { reason });
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const list = getStoredLeaves();
@@ -95,6 +112,10 @@ export const leaveService = {
    * Submit a new leave application
    */
   async submitRequest(reqData) {
+    const remoteData = await api.post('/api/admin/leaves', reqData);
+    if (remoteData) {
+      return remoteData;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         const list = getStoredLeaves();
