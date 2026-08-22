@@ -8,6 +8,16 @@ export default {
   theme: {
     extend: {
       colors: {
+        dark: {
+          950: '#07080b',
+          900: '#0c0e14',
+          850: '#11131a',
+          800: '#161922',
+          750: '#1d212d',
+          700: '#262a39',
+          600: '#353b4f',
+          500: '#4c536e',
+        },
         brand: {
           50: '#eef2ff',
           100: '#e0e7ff',
@@ -34,13 +44,16 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
         'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
         'elevated': '0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05)',
         'glow': '0 0 20px -5px rgba(99, 102, 241, 0.3)',
+        'glow-purple': '0 0 25px -5px rgba(124, 58, 237, 0.35)',
+        'glow-sm': '0 0 15px -3px rgba(124, 58, 237, 0.25)',
+        'card-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05)',
       },
       borderRadius: {
         'xl': '0.875rem',

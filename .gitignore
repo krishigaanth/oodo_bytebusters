@@ -13,7 +13,8 @@ dist
 dist-ssr
 *.local
 
-# Environment variables
+# Environment variables - NEVER COMMIT REAL SECRETS
+.env
 .env.local
 .env.development.local
 .env.test.local
