@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "Dayflow HRMS API Collection",
+    "description": "Full end-to-end API test collection covering Auth, Employee Profile, Attendance, Leave Management, Payroll, Notifications, and Admin Endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Auth - Employee Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"loginId\": \"EMP001\",\n  \"password\": \"Employee@123\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+      }
+    },
+    {
+      "name": "2. Auth - Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"loginId\": \"admin@dayflow.com\",\n  \"password\": \"Admin@123\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+      }
+    },
+    {
+      "name": "3. Profile - Get My Profile",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/employees/me", "host": ["{{baseUrl}}"], "path": ["employees", "me"] }
+      }
+    },
+    {
+      "name": "4. Profile - Update Allowed Fields",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{authToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"+1 (555) 777-9999\",\n  \"aboutBio\": \"Updated Senior Frontend Engineer bio with GraphQL and Next.js specialist.\",\n  \"skills\": [\"React\", \"TypeScript\", \"GraphQL\", \"Tailwind CSS\"]\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/employees/me", "host": ["{{baseUrl}}"], "path": ["employees", "me"] }
+      }
+    },
+    {
+      "name": "5. Attendance - Get Today Status",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/attendance/today", "host": ["{{baseUrl}}"], "path": ["attendance", "today"] }
+      }
+    },
+    {
+      "name": "6. Attendance - Check In",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/attendance/check-in", "host": ["{{baseUrl}}"], "path": ["attendance", "check-in"] }
+      }
+    },
+    {
+      "name": "7. Attendance - Check Out",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/attendance/check-out", "host": ["{{baseUrl}}"], "path": ["attendance", "check-out"] }
+      }
+    },
+    {
+      "name": "8. Attendance - Summary Metrics",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/attendance/summary", "host": ["{{baseUrl}}"], "path": ["attendance", "summary"] }
+      }
+    },
+    {
+      "name": "9. Leave - Get Balances",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/leaves/balances", "host": ["{{baseUrl}}"], "path": ["leaves", "balances"] }
+      }
+    },
+    {
+      "name": "10. Leave - Apply for Time Off",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{authToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"leaveType\": \"Paid Leave\",\n  \"startDate\": \"2026-10-05\",\n  \"endDate\": \"2026-10-07\",\n  \"totalDays\": 3,\n  \"reason\": \"Attending React Advanced Web Conference.\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/leaves/apply", "host": ["{{baseUrl}}"], "path": ["leaves", "apply"] }
+      }
+    },
+    {
+      "name": "11. Payroll - Get My Summary",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/payroll/summary", "host": ["{{baseUrl}}"], "path": ["payroll", "summary"] }
+      }
+    },
+    {
+      "name": "12. Notifications - Get All",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": { "raw": "{{baseUrl}}/notifications", "host": ["{{baseUrl}}"], "path": ["notifications"] }
+      }
+    },
+    {
+      "name": "13. Admin - Create New Employee (Generates LoginId & Temp Password)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Sophia\",\n  \"lastName\": \"Rodriguez\",\n  \"workEmail\": \"sophia.rodriguez@dayflow.io\",\n  \"jobTitle\": \"Staff UX Designer\",\n  \"department\": \"Product Design\",\n  \"role\": \"employee\",\n  \"monthlyWage\": 12500\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/admin/employees", "host": ["{{baseUrl}}"], "path": ["admin", "employees"] }
+      }
+    },
+    {
+      "name": "14. Admin - Approve Leave",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comments\": \"Approved by VP of Engineering.\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/admin/leaves/LV-2026-003/approve", "host": ["{{baseUrl}}"], "path": ["admin", "leaves", "LV-2026-003", "approve"] }
+      }
+    }
+  ]
+}
