@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Security Category -->
+        <record id="category_dayflow_hr" model="ir.module.category">
+            <field name="name">Dayflow HRMS</field>
+            <field name="description">Dayflow HRMS Security Roles</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Employee Group -->
+        <record id="group_dayflow_employee" model="res.groups">
+            <field name="name">Dayflow Employee</field>
+            <field name="category_id" ref="category_dayflow_hr"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Regular Dayflow Employee Access</field>
+        </record>
+
+        <!-- Admin / HR Group -->
+        <record id="group_dayflow_admin" model="res.groups">
+            <field name="name">Dayflow HR Admin</field>
+            <field name="category_id" ref="category_dayflow_hr"/>
+            <field name="implied_ids" eval="[(4, ref('group_dayflow_employee')), (4, ref('hr.group_hr_user'))]"/>
+            <field name="comment">Full Dayflow HR Administrator Access</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default Salary Components -->
+        <record id="salary_comp_hra" model="dayflow.salary.component">
+            <field name="name">House Rent Allowance (HRA)</field>
+            <field name="component_code">COMP-01</field>
+            <field name="category">Earning</field>
+            <field name="type">percentage</field>
+            <field name="value">40.0</field>
+            <field name="description">40% of base salary provided for housing allowance</field>
+            <field name="enabled">1</field>
+        </record>
+
+        <record id="salary_comp_transport" model="dayflow.salary.component">
+            <field name="name">Transport Allowance</field>
+            <field name="component_code">COMP-02</field>
+            <field name="category">Earning</field>
+            <field name="type">fixed</field>
+            <field name="value">3000.0</field>
+            <field name="description">Standard monthly travel allowance</field>
+            <field name="enabled">1</field>
+        </record>
+
+        <record id="salary_comp_special" model="dayflow.salary.component">
+            <field name="name">Special Allowance</field>
+            <field name="component_code">COMP-03</field>
+            <field name="category">Earning</field>
+            <field name="type">percentage</field>
+            <field name="value">15.0</field>
+            <field name="description">Performance and role special allowance</field>
+            <field name="enabled">1</field>
+        </record>
+
+        <record id="salary_comp_pf" model="dayflow.salary.component">
+            <field name="name">Provident Fund (PF)</field>
+            <field name="component_code">COMP-04</field>
+            <field name="category">Deduction</field>
+            <field name="type">percentage</field>
+            <field name="value">12.0</field>
+            <field name="description">Standard 12% statutory employee contribution</field>
+            <field name="enabled">1</field>
+        </record>
+
+        <record id="salary_comp_tax" model="dayflow.salary.component">
+            <field name="name">Income Tax Deduction</field>
+            <field name="component_code">COMP-05</field>
+            <field name="category">Deduction</field>
+            <field name="type">percentage</field>
+            <field name="value">5.0</field>
+            <field name="description">Estimated monthly tax withholding</field>
+            <field name="enabled">1</field>
+        </record>
+
+        <!-- Demo Departments -->
+        <record id="dep_engineering" model="hr.department">
+            <field name="name">Engineering</field>
+        </record>
+        <record id="dep_product" model="hr.department">
+            <field name="name">Product</field>
+        </record>
+        <record id="dep_hr" model="hr.department">
+            <field name="name">Human Resources</field>
+        </record>
+        <record id="dep_marketing" model="hr.department">
+            <field name="name">Marketing</field>
+        </record>
+        <record id="dep_finance" model="hr.department">
+            <field name="name">Finance</field>
+        </record>
+
+        <!-- Demo Employees -->
+        <record id="emp_1" model="hr.employee">
+            <field name="name">Sarah Jenkins</field>
+            <field name="employee_code">EMP-1001</field>
+            <field name="job_title">Senior Frontend Engineer</field>
+            <field name="department_id" ref="dep_engineering"/>
+            <field name="work_email">sarah.j@dayflow.io</field>
+            <field name="work_phone">+91 98765 43210</field>
+            <field name="office_location">Chennai</field>
+            <field name="employment_type">Full Time</field>
+            <field name="joining_date">2023-04-15</field>
+            <field name="monthly_wage">85000</field>
+            <field name="avatar_url">https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&amp;auto=format&amp;fit=crop&amp;q=80</field>
+        </record>
+
+        <record id="emp_2" model="hr.employee">
+            <field name="name">Michael Chen</field>
+            <field name="employee_code">EMP-1002</field>
+            <field name="job_title">Lead Backend Architect</field>
+            <field name="department_id" ref="dep_engineering"/>
+            <field name="work_email">michael.c@dayflow.io</field>
+            <field name="work_phone">+91 98765 43211</field>
+            <field name="office_location">Bangalore</field>
+            <field name="employment_type">Full Time</field>
+            <field name="joining_date">2022-08-01</field>
+            <field name="monthly_wage">110000</field>
+            <field name="avatar_url">https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&amp;auto=format&amp;fit=crop&amp;q=80</field>
+        </record>
+
+        <record id="emp_3" model="hr.employee">
+            <field name="name">Elena Rostova</field>
+            <field name="employee_code">EMP-1003</field>
+            <field name="job_title">Head of Product</field>
+            <field name="department_id" ref="dep_product"/>
+            <field name="work_email">elena.r@dayflow.io</field>
+            <field name="work_phone">+91 98765 43212</field>
+            <field name="office_location">Chennai</field>
+            <field name="employment_type">Full Time</field>
+            <field name="joining_date">2021-11-10</field>
+            <field name="monthly_wage">135000</field>
+            <field name="avatar_url">https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&amp;auto=format&amp;fit=crop&amp;q=80</field>
+        </record>
+
+        <record id="emp_4" model="hr.employee">
+            <field name="name">David Miller</field>
+            <field name="employee_code">EMP-1004</field>
+            <field name="job_title">UI/UX Designer</field>
+            <field name="department_id" ref="dep_product"/>
+            <field name="work_email">david.m@dayflow.io</field>
+            <field name="work_phone">+91 98765 43213</field>
+            <field name="office_location">Remote</field>
+            <field name="employment_type">Full Time</field>
+            <field name="joining_date">2024-01-15</field>
+            <field name="monthly_wage">70000</field>
+            <field name="avatar_url">https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&amp;auto=format&amp;fit=crop&amp;q=80</field>
+        </record>
+
+        <record id="emp_5" model="hr.employee">
+            <field name="name">Priya Sharma</field>
+            <field name="employee_code">EMP-1005</field>
+            <field name="job_title">HR Operations Manager</field>
+            <field name="department_id" ref="dep_hr"/>
+            <field name="work_email">priya.s@dayflow.io</field>
+            <field name="work_phone">+91 98765 43214</field>
+            <field name="office_location">Chennai</field>
+            <field name="employment_type">Full Time</field>
+            <field name="joining_date">2022-02-01</field>
+            <field name="monthly_wage">90000</field>
+            <field name="avatar_url">https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&amp;auto=format&amp;fit=crop&amp;q=80</field>
+        </record>
+    </data>
+</odoo>
