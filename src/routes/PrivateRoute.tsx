@@ -20,10 +20,5 @@ export const PrivateRoute: React.FC = () => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // Ensure role is employee
-  if (user.role !== 'employee') {
-    return <Navigate to="/login" replace />;
-  }
-
   return <Outlet />;
 };

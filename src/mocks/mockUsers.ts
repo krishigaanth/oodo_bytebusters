@@ -11,6 +11,16 @@ export interface MockUserRecord {
 
 export const MOCK_USERS_DATA: MockUserRecord[] = [
   {
+    loginId: 'ADMIN001',
+    password: 'admin123',
+    employeeId: 'ADMIN001',
+    name: 'HR Administrator',
+    email: 'admin@dayflow.io',
+    role: 'admin',
+    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=256&h=256&fit=crop&crop=faces&auto=format&q=80',
+    status: 'active',
+  },
+  {
     loginId: 'EMP001',
     password: 'password123',
     employeeId: 'EMP001',
@@ -33,7 +43,7 @@ export const MOCK_USERS_DATA: MockUserRecord[] = [
 ];
 
 export const AUTH_CONFIG = {
-  allowPublicSignup: false, // configurable flag as specified
+  allowPublicSignup: false,
   sessionStorageKey: 'dayflow_auth_session',
   mockNetworkDelayMs: 400,
 };

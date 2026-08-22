@@ -69,7 +69,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         const storedUser = await authService.getCurrentUser();
         if (isMounted) {
-          if (storedUser && storedUser.role === 'employee') {
+          if (storedUser && (storedUser.role === 'employee' || storedUser.role === 'admin' || storedUser.role === 'hr')) {
             dispatch({ type: 'AUTH_SUCCESS', payload: storedUser });
           } else {
             dispatch({ type: 'AUTH_LOGOUT' });

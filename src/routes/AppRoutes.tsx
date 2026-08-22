@@ -10,12 +10,18 @@ import { TimeOffPage } from '../pages/TimeOffPage';
 import { PayrollPage } from '../pages/PayrollPage';
 import { NotificationsPage } from '../pages/NotificationsPage';
 import { NotFoundPage } from '../pages/NotFoundPage';
+import { AdminPortal } from '../admin/AdminPortal';
 
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
       {/* Public Route */}
       <Route path="/login" element={<LoginPage />} />
+
+      {/* Protected Admin HR Routes */}
+      <Route element={<PrivateRoute />}>
+        <Route path="/admin/*" element={<AdminPortal />} />
+      </Route>
 
       {/* Protected Employee Routes */}
       <Route element={<PrivateRoute />}>
