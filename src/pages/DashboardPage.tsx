@@ -36,14 +36,14 @@ export const DashboardPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const loadDashboardData = async () => {
-    if (!user) return;
+    const empId = user?.employeeId || user?.id || 'EMP001';
     setIsLoading(true);
     try {
       const [todayRes, summaryRes, balancesRes, notifsRes] = await Promise.all([
-        attendanceService.getTodayStatus(user.employeeId),
-        attendanceService.getAttendanceSummary(user.employeeId),
-        leaveService.getLeaveBalance(user.employeeId),
-        notificationService.getNotifications(user.employeeId),
+        attendanceService.getTodayStatus(empId),
+        attendanceService.getAttendanceSummary(empId),
+        leaveService.getLeaveBalance(empId),
+        notificationService.getNotifications(empId),
       ]);
 
       setTodayStatus(todayRes);

@@ -37,9 +37,10 @@ export const ProfilePage: React.FC = () => {
   }, [searchParams]);
 
   const loadProfile = async () => {
-    if (!user) return;
+    const empId = user?.employeeId || user?.id || 'EMP001';
+    setIsLoading(true);
     try {
-      const data = await employeeService.getProfile(user.employeeId);
+      const data = await employeeService.getProfile(empId);
       setProfile(data);
     } catch (err) {
       console.error('Failed to load profile:', err);

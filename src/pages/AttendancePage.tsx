@@ -29,15 +29,15 @@ export const AttendancePage: React.FC = () => {
   ];
 
   const loadAttendanceData = async () => {
-    if (!user) return;
+    const empId = user?.employeeId || user?.id || 'EMP001';
     setIsLoading(true);
     try {
       const month = currentDate.getMonth();
       const year = currentDate.getFullYear();
 
       const [historyData, summaryData] = await Promise.all([
-        attendanceService.getAttendance(user.employeeId, { month, year }),
-        attendanceService.getAttendanceSummary(user.employeeId),
+        attendanceService.getAttendance(empId, { month, year }),
+        attendanceService.getAttendanceSummary(empId),
       ]);
 
       setRecords(historyData);

@@ -21,12 +21,12 @@ export const TimeOffPage: React.FC = () => {
   const [selectedRequest, setSelectedRequest] = useState<LeaveRequest | null>(null);
 
   const loadLeaveData = async () => {
-    if (!user) return;
+    const empId = user?.employeeId || user?.id || 'EMP001';
     setIsLoading(true);
     try {
       const [balData, reqData] = await Promise.all([
-        leaveService.getLeaveBalance(user.employeeId),
-        leaveService.getLeaveRequests(user.employeeId),
+        leaveService.getLeaveBalance(empId),
+        leaveService.getLeaveRequests(empId),
       ]);
       setBalances(balData);
       setRequests(reqData);
