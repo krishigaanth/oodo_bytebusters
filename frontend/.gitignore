@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Production build outputs
+dist
+build
+.output
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment & Logs
+.env
+.env.local
+*.log
+
+# OS Metadata
+.DS_Store
+Thumbs.db
